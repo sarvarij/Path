@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.0"
+    defaultConfig {
+        applicationId "com.example.path"
+        minSdkVersion 15
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+
+        debug{
+            debuggable  true
+            minifyEnabled false
+            buildConfigField "String", "JAWG_BASE_URL", "\"https://api.jawg.io/\""
+            buildConfigField "String", "JAWG_API_KEY", "\"kG7qvs77v2GoChdmJn56yYIhdcf8ydg0rbnrfhMmRhMoUHeWREyStWecwpI1iM7r\""
+            buildConfigField "String", "TOMTOM_BASE_URL", "\"https://api.tomtom.com/\""
+            buildConfigField "String", "TOMTOM_API_KEY", "\"gYcitKnpd3SrtUvIfAfJRSOCt380c8E1\""
+        }
+
+        release {
+            debuggable  false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "JAWG_BASE_URL", "\"https://api.jawg.io/\""
+            buildConfigField "String", "JAWG_API_KEY", "\"kG7qvs77v2GoChdmJn56yYIhdcf8ydg0rbnrfhMmRhMoUHeWREyStWecwpI1iM7r\""
+            buildConfigField "String", "TOMTOM_BASE_URL", "\"https://api.tomtom.com/\""
+            buildConfigField "String", "TOMTOM_API_KEY", "\"gYcitKnpd3SrtUvIfAfJRSOCt380c8E1\""
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:+'
+
+    implementation "android.arch.lifecycle:extensions:1.1.0"
+    implementation "android.arch.lifecycle:viewmodel:1.1.0"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation 'com.google.code.gson:gson:+'
+    implementation 'com.squareup.retrofit2:retrofit:+'
+    implementation 'com.squareup.retrofit2:converter-gson:+'
+
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:+'
+
+
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    implementation 'org.projectlombok:lombok:1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:7.3.2'
+
+    implementation 'com.jakewharton:butterknife:+'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:+'
+
+    def room_version = "2.1.0"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    implementation 'com.google.dagger:dagger-android:2.15' // dagger library
+    implementation 'com.google.dagger:dagger-android-support:2.15'
+    // if you use the support libraries
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.15'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.15' //for code generation
+}
